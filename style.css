@@ -104,6 +104,14 @@ h1 { margin-bottom: 8px; font-size: clamp(28px, 3.3vw, 48px); letter-spacing: .0
   margin-bottom: 20px;
 }
 .controls-head h2 { margin: 0; font-size: 30px; }
+.control-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.save-btn,
 .reset-btn {
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -113,7 +121,39 @@ h1 { margin-bottom: 8px; font-size: clamp(28px, 3.3vw, 48px); letter-spacing: .0
   cursor: pointer;
   transition: .2s ease;
 }
+.save-btn {
+  border-color: var(--accent);
+  color: #fff;
+  background: var(--accent);
+  box-shadow: 0 7px 18px rgba(143,47,47,.18);
+}
+.save-btn:hover { background: var(--accent-dark); transform: translateY(-1px); }
+.save-btn:disabled { opacity: .64; cursor: wait; transform: none; }
 .reset-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+
+.save-toast {
+  position: fixed;
+  left: 50%;
+  bottom: max(22px, env(safe-area-inset-bottom));
+  z-index: 10000;
+  max-width: calc(100vw - 28px);
+  padding: 11px 17px;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(36,27,23,.9);
+  box-shadow: 0 12px 34px rgba(36,27,23,.22);
+  font: 600 13px/1.35 ui-sans-serif, system-ui, sans-serif;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, 10px);
+  transition: opacity .22s ease, transform .22s ease, visibility .22s ease;
+}
+.save-toast.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
 
 .control-card {
   margin-bottom: 16px;
@@ -218,6 +258,9 @@ h1 { margin-bottom: 8px; font-size: clamp(28px, 3.3vw, 48px); letter-spacing: .0
   .brand > p:last-child { font-size: 12px; }
   .stage { border-radius: 16px; }
   .controls { padding: 24px 14px 32px; }
+  .controls-head { align-items: flex-start; }
+  .control-actions { max-width: 190px; }
+  .save-btn, .reset-btn { padding: 9px 12px; }
   .control-card { padding: 15px; border-radius: 15px; }
   .choice-grid.compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .choice { min-height: 44px; }

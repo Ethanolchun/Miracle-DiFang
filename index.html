@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#f5efe5" />
   <title>奇迹狄芳环游大周</title>
-  <link rel="stylesheet" href="style.css?v=3" />
+  <link rel="stylesheet" href="style.css?v=4" />
 
   <link rel="preload" as="image" href="images/base.webp" fetchpriority="high" />
   <link rel="preload" as="image" href="images/left-blue.webp" />
@@ -36,7 +36,7 @@
       <div class="brand">
         <p class="eyebrow">DRESS-UP GAME</p>
         <h1>奇迹狄芳环游大周</h1>
-        <p>点击下方选项，为李元芳与狄仁杰搭配服装和配件</p>
+        <p>点击下方选项，为芳芳和大人搭配服装和配件~</p>
       </div>
 
       <div class="stage-wrap">
@@ -70,11 +70,14 @@
           <p class="eyebrow">WARDROBE</p>
           <h2>衣橱</h2>
         </div>
-        <button class="reset-btn" id="resetBtn" type="button">恢复素体</button>
+        <div class="control-actions">
+          <button class="save-btn" id="saveBtn" type="button">保存图片</button>
+          <button class="reset-btn" id="resetBtn" type="button">恢复素体</button>
+        </div>
       </div>
 
       <section class="control-card">
-        <h3><span>01</span> 李元芳衣服</h3>
+        <h3><span>01</span> 芳芳的衣橱</h3>
         <div class="choice-grid" data-exclusive-group="left-outfit">
           <button class="choice active" type="button" data-target="none">不穿衣服</button>
           <button class="choice" type="button" data-target="left-blue">蓝圆领袍</button>
@@ -86,7 +89,7 @@
       </section>
 
       <section class="control-card">
-        <h3><span>02</span> 狄仁杰衣服</h3>
+        <h3><span>02</span> 大人的衣橱</h3>
         <div class="choice-grid" data-exclusive-group="right-outfit">
           <button class="choice active" type="button" data-target="none">不穿衣服</button>
           <button class="choice" type="button" data-target="right-silver-green">银青官服</button>
@@ -101,18 +104,18 @@
         <p class="sub-label">李元芳</p>
         <div class="choice-grid compact" data-exclusive-group="left-hat">
           <button class="choice active" type="button" data-target="none">不戴</button>
-          <button class="choice" type="button" data-target="left-hat-1">元芳帽子 1</button>
-          <button class="choice" type="button" data-target="left-hat-2">元芳帽子 2</button>
+          <button class="choice" type="button" data-target="left-hat-1">帽子 1</button>
+          <button class="choice" type="button" data-target="left-hat-2">帽子 2</button>
         </div>
         <p class="sub-label">狄仁杰</p>
         <div class="choice-grid compact" data-exclusive-group="right-hat">
           <button class="choice active" type="button" data-target="none">不戴</button>
-          <button class="choice" type="button" data-target="right-hat">大人帽子</button>
+          <button class="choice" type="button" data-target="right-hat">帽子</button>
         </div>
       </section>
 
       <section class="control-card">
-        <h3><span>04</span> 小配件</h3>
+        <h3><span>04</span> 武器</h3>
         <div class="switch-list">
           <label class="switch-row">
             <span>链子刀</span>
@@ -128,6 +131,7 @@
       </section>
     </aside>
   </main>
-  <script src="script.js?v=3"></script>
+  <div class="save-toast" id="saveToast" role="status" aria-live="polite" aria-hidden="true"></div>
+  <script src="script.js?v=4"></script>
 </body>
 </html>

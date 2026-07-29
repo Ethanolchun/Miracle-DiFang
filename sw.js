@@ -1,9 +1,9 @@
-const CACHE_NAME = 'miracle-difang-v3';
+const CACHE_NAME = 'miracle-difang-v4';
 const ASSETS = [
   './',
   './index.html',
-  './style.css?v=3',
-  './script.js?v=3',
+  './style.css?v=4',
+  './script.js?v=4',
   './images/base.webp',
   './images/left-blue.webp',
   './images/left-silver.webp',
