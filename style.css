@@ -222,3 +222,78 @@ h1 { margin-bottom: 8px; font-size: clamp(28px, 3.3vw, 48px); letter-spacing: .0
   .choice-grid.compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .choice { min-height: 44px; }
 }
+
+/* 全部图层准备完成前统一遮罩，避免图片逐层、逐段出现。 */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  padding: 28px;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(143,47,47,.1), transparent 18rem),
+    #f8f3eb;
+  transition: opacity .42s ease, visibility .42s ease;
+}
+.loading-mark {
+  display: grid;
+  place-items: center;
+  width: 82px;
+  height: 82px;
+  border: 1px solid rgba(143,47,47,.34);
+  border-radius: 50%;
+  color: var(--accent);
+  background: rgba(255,255,255,.7);
+  box-shadow: 0 16px 44px rgba(57,37,26,.1);
+  font-size: 23px;
+  letter-spacing: .12em;
+}
+.loading-screen p {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: .16em;
+}
+.loading-screen small {
+  color: var(--muted);
+  font: 600 12px/1 ui-sans-serif, system-ui, sans-serif;
+}
+.loading-track {
+  width: min(260px, 65vw);
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(143,47,47,.13);
+}
+.loading-track span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  transition: width .18s ease;
+}
+.is-loading .app {
+  opacity: 0;
+  visibility: hidden;
+}
+.is-ready .app {
+  animation: wardrobeReveal .45s ease both;
+}
+.is-ready .loading-screen {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+@keyframes wardrobeReveal {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .loading-screen,
+  .is-ready .app,
+  .loading-track span { transition: none; animation: none; }
+}

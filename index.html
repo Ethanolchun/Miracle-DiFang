@@ -5,38 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#f5efe5" />
   <title>奇迹狄芳环游大周</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=3" />
+
+  <link rel="preload" as="image" href="images/base.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="images/left-blue.webp" />
+  <link rel="preload" as="image" href="images/left-silver.webp" />
+  <link rel="preload" as="image" href="images/left-red-black.webp" />
+  <link rel="preload" as="image" href="images/left-court.webp" />
+  <link rel="preload" as="image" href="images/left-armor.webp" />
+  <link rel="preload" as="image" href="images/right-silver-green.webp" />
+  <link rel="preload" as="image" href="images/right-doctor.webp" />
+  <link rel="preload" as="image" href="images/right-marshal-red.webp" />
+  <link rel="preload" as="image" href="images/right-cross-collar.webp" />
+  <link rel="preload" as="image" href="images/chain-knife.webp" />
+  <link rel="preload" as="image" href="images/yulan-sword.webp" />
+  <link rel="preload" as="image" href="images/left-hat-1.webp" />
+  <link rel="preload" as="image" href="images/left-hat-2.webp" />
+  <link rel="preload" as="image" href="images/right-hat.webp" />
 </head>
-<body>
-  <main class="app">
+<body class="is-loading">
+  <div class="loading-screen" id="loadingScreen" role="status" aria-live="polite">
+    <div class="loading-mark" aria-hidden="true">狄芳</div>
+    <p>正在整理衣橱</p>
+    <div class="loading-track"><span id="loadingBar"></span></div>
+    <small id="loadingText">0%</small>
+  </div>
+
+  <main class="app" id="app" aria-busy="true">
     <section class="viewer" aria-label="换装展示区">
       <div class="brand">
         <p class="eyebrow">DRESS-UP GAME</p>
         <h1>奇迹狄芳环游大周</h1>
-        <p>点击下方选项，为大人和芳芳搭配服装与配件</p>
+        <p>点击下方选项，为李元芳与狄仁杰搭配服装和配件</p>
       </div>
 
       <div class="stage-wrap">
         <div class="stage" id="stage">
-          <img class="layer base" src="images/base.png" alt="两个人物素体" draggable="false" />
+          <img class="layer base" src="images/base.webp" alt="李元芳与狄仁杰素体" draggable="false" loading="eager" decoding="async" fetchpriority="high" />
 
-          <img class="layer outfit left-outfit" id="left-blue" src="images/left-blue.png" alt="左边人物蓝圆领袍" draggable="false" hidden />
-          <img class="layer outfit left-outfit" id="left-silver" src="images/left-silver.png" alt="左边人物银圆领袍" draggable="false" hidden />
-          <img class="layer outfit left-outfit" id="left-red-black" src="images/left-red-black.png" alt="左边人物红袍黑褂" draggable="false" hidden />
-          <img class="layer outfit left-outfit" id="left-court" src="images/left-court.png" alt="左边人物朝服" draggable="false" hidden />
-          <img class="layer outfit left-outfit" id="left-armor" src="images/left-armor.png" alt="左边人物将军铠" draggable="false" hidden />
+          <img class="layer outfit left-outfit" id="left-blue" src="images/left-blue.webp" alt="李元芳蓝圆领袍" draggable="false" loading="eager" decoding="async" hidden />
+          <img class="layer outfit left-outfit" id="left-silver" src="images/left-silver.webp" alt="李元芳银圆领袍" draggable="false" loading="eager" decoding="async" hidden />
+          <img class="layer outfit left-outfit" id="left-red-black" src="images/left-red-black.webp" alt="李元芳红袍黑褂" draggable="false" loading="eager" decoding="async" hidden />
+          <img class="layer outfit left-outfit" id="left-court" src="images/left-court.webp" alt="李元芳朝服" draggable="false" loading="eager" decoding="async" hidden />
+          <img class="layer outfit left-outfit" id="left-armor" src="images/left-armor.webp" alt="李元芳将军铠" draggable="false" loading="eager" decoding="async" hidden />
 
-          <img class="layer outfit right-outfit" id="right-silver-green" src="images/right-silver-green.png" alt="右边人物银青官服" draggable="false" hidden />
-          <img class="layer outfit right-outfit" id="right-doctor" src="images/right-doctor.png" alt="右边人物郎中常服" draggable="false" hidden />
-          <img class="layer outfit right-outfit" id="right-marshal-red" src="images/right-marshal-red.png" alt="右边人物大帅红袍" draggable="false" hidden />
-          <img class="layer outfit right-outfit" id="right-cross-collar" src="images/right-cross-collar.png" alt="右边人物交领袍" draggable="false" hidden />
+          <img class="layer outfit right-outfit" id="right-silver-green" src="images/right-silver-green.webp" alt="狄仁杰银青官服" draggable="false" loading="eager" decoding="async" hidden />
+          <img class="layer outfit right-outfit" id="right-doctor" src="images/right-doctor.webp" alt="狄仁杰郎中常服" draggable="false" loading="eager" decoding="async" hidden />
+          <img class="layer outfit right-outfit" id="right-marshal-red" src="images/right-marshal-red.webp" alt="狄仁杰大帅红袍" draggable="false" loading="eager" decoding="async" hidden />
+          <img class="layer outfit right-outfit" id="right-cross-collar" src="images/right-cross-collar.webp" alt="狄仁杰交领袍" draggable="false" loading="eager" decoding="async" hidden />
 
-          <img class="layer accessory" id="chain-knife" src="images/chain-knife.png" alt="链子刀" draggable="false" hidden />
-          <img class="layer accessory" id="yulan-sword" src="images/yulan-sword.png" alt="幽兰剑" draggable="false" hidden />
+          <img class="layer accessory" id="chain-knife" src="images/chain-knife.webp" alt="链子刀" draggable="false" loading="eager" decoding="async" hidden />
+          <img class="layer accessory" id="yulan-sword" src="images/yulan-sword.webp" alt="幽兰剑" draggable="false" loading="eager" decoding="async" hidden />
 
-          <img class="layer hat left-hat" id="left-hat-1" src="images/left-hat-1.png" alt="左边人物帽子一" draggable="false" hidden />
-          <img class="layer hat left-hat" id="left-hat-2" src="images/left-hat-2.png" alt="左边人物帽子二" draggable="false" hidden />
-          <img class="layer hat right-hat" id="right-hat" src="images/right-hat.png" alt="右边人物帽子" draggable="false" hidden />
+          <img class="layer hat left-hat" id="left-hat-1" src="images/left-hat-1.webp" alt="李元芳帽子一" draggable="false" loading="eager" decoding="async" hidden />
+          <img class="layer hat left-hat" id="left-hat-2" src="images/left-hat-2.webp" alt="李元芳帽子二" draggable="false" loading="eager" decoding="async" hidden />
+          <img class="layer hat right-hat" id="right-hat" src="images/right-hat.webp" alt="狄仁杰帽子" draggable="false" loading="eager" decoding="async" hidden />
         </div>
       </div>
     </section>
@@ -51,7 +74,7 @@
       </div>
 
       <section class="control-card">
-        <h3><span>01</span> 芳芳的衣橱</h3>
+        <h3><span>01</span> 李元芳衣服</h3>
         <div class="choice-grid" data-exclusive-group="left-outfit">
           <button class="choice active" type="button" data-target="none">不穿衣服</button>
           <button class="choice" type="button" data-target="left-blue">蓝圆领袍</button>
@@ -63,7 +86,7 @@
       </section>
 
       <section class="control-card">
-        <h3><span>02</span> 大人的衣橱</h3>
+        <h3><span>02</span> 狄仁杰衣服</h3>
         <div class="choice-grid" data-exclusive-group="right-outfit">
           <button class="choice active" type="button" data-target="none">不穿衣服</button>
           <button class="choice" type="button" data-target="right-silver-green">银青官服</button>
@@ -75,21 +98,21 @@
 
       <section class="control-card">
         <h3><span>03</span> 帽子</h3>
-        <p class="sub-label">芳芳的帽子</p>
+        <p class="sub-label">李元芳</p>
         <div class="choice-grid compact" data-exclusive-group="left-hat">
           <button class="choice active" type="button" data-target="none">不戴</button>
-          <button class="choice" type="button" data-target="left-hat-1">帽子 1</button>
-          <button class="choice" type="button" data-target="left-hat-2">帽子 2</button>
+          <button class="choice" type="button" data-target="left-hat-1">元芳帽子 1</button>
+          <button class="choice" type="button" data-target="left-hat-2">元芳帽子 2</button>
         </div>
-        <p class="sub-label">大人的帽子</p>
+        <p class="sub-label">狄仁杰</p>
         <div class="choice-grid compact" data-exclusive-group="right-hat">
           <button class="choice active" type="button" data-target="none">不戴</button>
-          <button class="choice" type="button" data-target="right-hat">帽子</button>
+          <button class="choice" type="button" data-target="right-hat">大人帽子</button>
         </div>
       </section>
 
       <section class="control-card">
-        <h3><span>04</span> 芳芳的武器</h3>
+        <h3><span>04</span> 小配件</h3>
         <div class="switch-list">
           <label class="switch-row">
             <span>链子刀</span>
@@ -105,6 +128,6 @@
       </section>
     </aside>
   </main>
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>

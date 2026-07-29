@@ -1,6 +1,52 @@
 const exclusiveGroups = document.querySelectorAll('[data-exclusive-group]');
 const accessoryToggles = document.querySelectorAll('[data-toggle-target]');
 const resetBtn = document.getElementById('resetBtn');
+const app = document.getElementById('app');
+const loadingScreen = document.getElementById('loadingScreen');
+const loadingBar = document.getElementById('loadingBar');
+const loadingText = document.getElementById('loadingText');
+const layers = [...document.querySelectorAll('.layer')];
+
+function updateLoadingProgress(done, total) {
+  const percentage = Math.round((done / total) * 100);
+  loadingBar.style.width = `${percentage}%`;
+  loadingText.textContent = `${percentage}%`;
+}
+
+async function waitForImage(image) {
+  if (!image.complete) {
+    await new Promise(resolve => {
+      image.addEventListener('load', resolve, { once: true });
+      image.addEventListener('error', resolve, { once: true });
+    });
+  }
+
+  if (image.naturalWidth > 0 && typeof image.decode === 'function') {
+    try {
+      await image.decode();
+    } catch (_) {
+      // 图片已经加载但浏览器拒绝重复 decode 时，仍可正常显示。
+    }
+  }
+}
+
+async function revealWhenReady() {
+  let done = 0;
+  updateLoadingProgress(done, layers.length);
+
+  await Promise.all(layers.map(async image => {
+    await waitForImage(image);
+    done += 1;
+    updateLoadingProgress(done, layers.length);
+  }));
+
+  // 给浏览器一帧时间完成所有图层合成，避免揭幕瞬间闪烁。
+  await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  document.body.classList.remove('is-loading');
+  document.body.classList.add('is-ready');
+  app.setAttribute('aria-busy', 'false');
+  loadingScreen.setAttribute('aria-hidden', 'true');
+}
 
 function hideGroup(groupName) {
   document.querySelectorAll(`.${groupName}`).forEach(layer => {
@@ -59,3 +105,11 @@ function resetAll() {
 }
 
 resetBtn.addEventListener('click', resetAll);
+
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+
+revealWhenReady();
