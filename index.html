@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f5efe5" />
+  <title>奇迹狄芳环游大周</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="viewer" aria-label="换装展示区">
+      <div class="brand">
+        <p class="eyebrow">DRESS-UP GAME</p>
+        <h1>奇迹狄芳环游大周</h1>
+        <p>点击下方选项，为两位人物搭配服装与配件</p>
+      </div>
+
+      <div class="stage-wrap">
+        <div class="stage" id="stage">
+          <img class="layer base" src="images/base.png" alt="两个人物素体" draggable="false" />
+
+          <img class="layer outfit left-outfit" id="left-blue" src="images/left-blue.png" alt="左边人物蓝圆领袍" draggable="false" hidden />
+          <img class="layer outfit left-outfit" id="left-silver" src="images/left-silver.png" alt="左边人物银圆领袍" draggable="false" hidden />
+          <img class="layer outfit left-outfit" id="left-red-black" src="images/left-red-black.png" alt="左边人物红袍黑褂" draggable="false" hidden />
+          <img class="layer outfit left-outfit" id="left-court" src="images/left-court.png" alt="左边人物朝服" draggable="false" hidden />
+          <img class="layer outfit left-outfit" id="left-armor" src="images/left-armor.png" alt="左边人物将军铠" draggable="false" hidden />
+
+          <img class="layer outfit right-outfit" id="right-silver-green" src="images/right-silver-green.png" alt="右边人物银青官服" draggable="false" hidden />
+          <img class="layer outfit right-outfit" id="right-doctor" src="images/right-doctor.png" alt="右边人物郎中常服" draggable="false" hidden />
+          <img class="layer outfit right-outfit" id="right-marshal-red" src="images/right-marshal-red.png" alt="右边人物大帅红袍" draggable="false" hidden />
+          <img class="layer outfit right-outfit" id="right-cross-collar" src="images/right-cross-collar.png" alt="右边人物交领袍" draggable="false" hidden />
+
+          <img class="layer accessory" id="chain-knife" src="images/chain-knife.png" alt="链子刀" draggable="false" hidden />
+          <img class="layer accessory" id="yulan-sword" src="images/yulan-sword.png" alt="幽兰剑" draggable="false" hidden />
+
+          <img class="layer hat left-hat" id="left-hat-1" src="images/left-hat-1.png" alt="左边人物帽子一" draggable="false" hidden />
+          <img class="layer hat left-hat" id="left-hat-2" src="images/left-hat-2.png" alt="左边人物帽子二" draggable="false" hidden />
+          <img class="layer hat right-hat" id="right-hat" src="images/right-hat.png" alt="右边人物帽子" draggable="false" hidden />
+        </div>
+      </div>
+    </section>
+
+    <aside class="controls" aria-label="换装控制区">
+      <div class="controls-head">
+        <div>
+          <p class="eyebrow">WARDROBE</p>
+          <h2>衣橱</h2>
+        </div>
+        <button class="reset-btn" id="resetBtn" type="button">恢复素体</button>
+      </div>
+
+      <section class="control-card">
+        <h3><span>01</span> 左边人物衣服</h3>
+        <div class="choice-grid" data-exclusive-group="left-outfit">
+          <button class="choice active" type="button" data-target="none">不穿衣服</button>
+          <button class="choice" type="button" data-target="left-blue">蓝圆领袍</button>
+          <button class="choice" type="button" data-target="left-silver">银圆领袍</button>
+          <button class="choice" type="button" data-target="left-red-black">红袍黑褂</button>
+          <button class="choice" type="button" data-target="left-court">朝服</button>
+          <button class="choice" type="button" data-target="left-armor">将军铠</button>
+        </div>
+      </section>
+
+      <section class="control-card">
+        <h3><span>02</span> 右边人物衣服</h3>
+        <div class="choice-grid" data-exclusive-group="right-outfit">
+          <button class="choice active" type="button" data-target="none">不穿衣服</button>
+          <button class="choice" type="button" data-target="right-silver-green">银青官服</button>
+          <button class="choice" type="button" data-target="right-doctor">郎中常服</button>
+          <button class="choice" type="button" data-target="right-marshal-red">大帅红袍</button>
+          <button class="choice" type="button" data-target="right-cross-collar">交领袍</button>
+        </div>
+      </section>
+
+      <section class="control-card">
+        <h3><span>03</span> 帽子</h3>
+        <p class="sub-label">左边人物</p>
+        <div class="choice-grid compact" data-exclusive-group="left-hat">
+          <button class="choice active" type="button" data-target="none">不戴</button>
+          <button class="choice" type="button" data-target="left-hat-1">芳帽子 1</button>
+          <button class="choice" type="button" data-target="left-hat-2">芳帽子 2</button>
+        </div>
+        <p class="sub-label">右边人物</p>
+        <div class="choice-grid compact" data-exclusive-group="right-hat">
+          <button class="choice active" type="button" data-target="none">不戴</button>
+          <button class="choice" type="button" data-target="right-hat">大人帽子</button>
+        </div>
+      </section>
+
+      <section class="control-card">
+        <h3><span>04</span> 小配件</h3>
+        <div class="switch-list">
+          <label class="switch-row">
+            <span>链子刀</span>
+            <input type="checkbox" data-toggle-target="chain-knife" />
+            <i aria-hidden="true"></i>
+          </label>
+          <label class="switch-row">
+            <span>幽兰剑</span>
+            <input type="checkbox" data-toggle-target="yulan-sword" />
+            <i aria-hidden="true"></i>
+          </label>
+        </div>
+      </section>
+    </aside>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
