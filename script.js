@@ -8,6 +8,7 @@ const loadingScreen = document.getElementById('loadingScreen');
 const loadingBar = document.getElementById('loadingBar');
 const loadingText = document.getElementById('loadingText');
 const layers = [...document.querySelectorAll('.layer')];
+const COPYRIGHT_NOTICE = '© EthanolCHUN · All Rights Reserved';
 
 function updateLoadingProgress(done, total) {
   const percentage = Math.round((done / total) * 100);
@@ -146,6 +147,16 @@ async function saveCurrentLook() {
         context.drawImage(layer, 0, 0, canvas.width, canvas.height);
       }
     }
+
+    const watermarkPadding = Math.max(18, Math.round(canvas.width * 0.012));
+    const watermarkFontSize = Math.max(16, Math.round(canvas.width * 0.009));
+    context.save();
+    context.textAlign = 'right';
+    context.textBaseline = 'bottom';
+    context.fillStyle = '#bcbcbc';
+    context.font = `500 ${watermarkFontSize}px ui-sans-serif, system-ui, sans-serif`;
+    context.fillText(COPYRIGHT_NOTICE, canvas.width - watermarkPadding, canvas.height - watermarkPadding);
+    context.restore();
 
     const blob = await canvasToBlob(canvas);
     const url = URL.createObjectURL(blob);
